@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Observatorio FTP · INFOTEP</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -14,7 +14,6 @@
     --blue:       #0070b8;
     --blue-light: #1a8fd1;
     --gold:       #f5a623;
-    --gold-soft:  #fff8ec;
     --white:      #ffffff;
     --bg:         #f0f5fa;
     --muted:      #6b84a0;
@@ -27,24 +26,12 @@
     background: var(--bg);
     font-family: 'DM Sans', sans-serif;
     color: var(--navy);
-    display: flex;
-    justify-content: center;
-  }
-
-  .page {
-    width: 100%;
-    max-width: 430px;
-    min-height: 100vh;
-    background: var(--white);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
   }
 
   /* ── HERO ── */
   .hero {
     background: linear-gradient(160deg, #071828 0%, var(--navy) 40%, var(--navy-mid) 75%, #0c4a80 100%);
-    padding: 36px 28px 52px;
+    padding: clamp(28px, 5vw, 60px) clamp(20px, 6vw, 80px) clamp(50px, 7vw, 80px);
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -77,15 +64,14 @@
     position: absolute;
     bottom: -1px; left: 0; right: 0;
     height: 40px;
-    background: var(--white);
+    background: var(--bg);
     clip-path: ellipse(58% 100% at 50% 100%);
   }
-
   .hero-inner { position: relative; z-index: 1; }
 
-  /* LOGO: fondo más claro y visible */
   .logo-wrap {
-    width: 200px; height: 160px;
+    width: clamp(150px, 22vw, 220px);
+    height: clamp(120px, 16vw, 175px);
     margin: 0 auto 20px;
     display: flex;
     align-items: center;
@@ -93,16 +79,10 @@
     background: rgba(255,255,255,.92);
     border: 2px solid rgba(255,255,255,.95);
     border-radius: 22px;
-    padding: 18px 24px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 6px 32px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.8);
+    padding: clamp(14px, 2vw, 24px) clamp(18px, 3vw, 28px);
+    box-shadow: 0 6px 32px rgba(0,0,0,.3);
   }
-  .logo-wrap img {
-    width: 165px;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,.15));
-  }
+  .logo-wrap img { width: 100%; height: auto; object-fit: contain; }
 
   .hero-divider {
     width: 40px; height: 2px;
@@ -111,32 +91,33 @@
     border-radius: 2px;
   }
 
-  /* TÍTULO: fuente Arial */
   .hero h1 {
     font-family: Arial, 'Helvetica Neue', sans-serif;
-    font-size: 21px;
+    font-size: clamp(20px, 3.5vw, 34px);
     font-weight: 800;
     color: white;
     line-height: 1.22;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
   }
   .hero h1 .highlight { color: var(--gold); }
 
   .hero-sub {
-    font-size: 12.5px;
+    font-size: clamp(12px, 1.6vw, 15px);
     color: rgba(255,255,255,.58);
-    line-height: 1.55;
-    max-width: 290px;
+    line-height: 1.6;
+    max-width: 560px;
     margin: 0 auto;
   }
 
   /* ── BODY ── */
   .body {
-    flex: 1;
-    padding: 30px 22px 36px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: clamp(24px, 4vw, 52px) clamp(16px, 5vw, 60px) clamp(32px, 5vw, 64px);
     display: flex;
     flex-direction: column;
-    gap: 26px;
+    gap: 32px;
   }
 
   .section-label {
@@ -146,7 +127,7 @@
     letter-spacing: .15em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 11px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -159,50 +140,38 @@
   }
 
   /* ── ACTION BUTTONS ── */
-  .actions { display: flex; flex-direction: column; gap: 10px; }
+  /* Desktop: 2 botones lado a lado */
+  .actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
 
   .action-btn {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 15px 16px;
+    padding: 16px 18px;
     border-radius: 14px;
     text-decoration: none;
-    font-size: 13.5px;
     font-weight: 500;
     transition: transform .2s ease, box-shadow .2s ease;
     cursor: pointer;
     border: none;
-    width: 100%;
     text-align: left;
     color: white;
   }
-  .action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,.18);
-  }
+  .action-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
   .action-btn .icon {
-    width: 42px; height: 42px;
+    width: 44px; height: 44px;
     border-radius: 11px;
     background: rgba(255,255,255,.15);
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    font-size: 19px;
+    flex-shrink: 0; font-size: 20px;
   }
   .action-btn .text { flex: 1; }
-  .action-btn .lbl {
-    display: block;
-    font-size: 11px;
-    opacity: .7;
-    font-weight: 400;
-    margin-bottom: 2px;
-  }
-  .action-btn .val {
-    display: block;
-    font-weight: 600;
-    font-size: 13px;
-    word-break: break-all;
-  }
+  .action-btn .lbl { display: block; font-size: 11px; opacity: .7; font-weight: 400; margin-bottom: 2px; }
+  .action-btn .val { display: block; font-weight: 600; font-size: clamp(11px, 1.5vw, 13px); word-break: break-all; }
   .chevron { opacity: .5; flex-shrink: 0; }
 
   .btn-portal {
@@ -216,13 +185,18 @@
   }
 
   /* ── CONTACT CARDS ── */
-  .contacts { display: flex; flex-direction: column; gap: 9px; }
+  /* Desktop: 2-3 columnas | Tablet: 2 columnas | Móvil: 1 columna */
+  .contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
 
   .contact-card {
     display: flex;
     align-items: center;
     gap: 13px;
-    padding: 13px 15px;
+    padding: 14px 16px;
     border-radius: 13px;
     background: var(--card-bg);
     border: 1.5px solid var(--border);
@@ -233,37 +207,21 @@
   .contact-card:hover {
     border-color: var(--blue);
     box-shadow: 0 4px 16px rgba(0,112,184,.12);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 
   .avatar {
-    width: 44px; height: 44px;
+    width: 46px; height: 46px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    font-size: 18px;
+    flex-shrink: 0; font-size: 20px;
   }
 
   .c-info { flex: 1; min-width: 0; }
-  .c-role {
-    font-size: 12.5px;
-    font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 2px;
-    color: var(--navy);
-  }
-  /* Nombre del responsable */
-  .c-name {
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--blue);
-    margin-bottom: 3px;
-  }
-  .c-phone {
-    font-size: 11.5px;
-    color: var(--muted);
-  }
+  .c-role { font-size: clamp(11.5px, 1.4vw, 13px); font-weight: 600; line-height: 1.3; margin-bottom: 2px; color: var(--navy); }
+  .c-name  { font-size: clamp(11px, 1.3vw, 12.5px); font-weight: 500; color: var(--blue); margin-bottom: 3px; }
+  .c-phone { font-size: clamp(10.5px, 1.2vw, 12px); color: var(--muted); }
 
   .ext-pill {
     background: var(--navy);
@@ -277,42 +235,20 @@
     white-space: nowrap;
   }
 
-  .tap-hint {
-    text-align: center;
-    font-size: 11.5px;
-    color: #b0c0d0;
-    margin-top: -6px;
-  }
+  .tap-hint { text-align: center; font-size: 11.5px; color: #b0c0d0; margin-top: 4px; }
 
   /* ── FOOTER ── */
   .footer {
-    padding: 4px 22px 28px;
+    padding: 4px clamp(16px, 5vw, 60px) 36px;
     text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
   }
-  .footer-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-  .footer-logo img {
-    width: 36px; height: auto;
-    object-fit: contain;
-    opacity: .3;
-  }
-  .footer-logo span {
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: #c0cdd8;
-    letter-spacing: .05em;
-  }
-  .footer p {
-    font-size: 11px;
-    color: #c0cbd5;
-    line-height: 1.6;
-  }
+  .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px; }
+  .footer-logo img { width: 36px; height: auto; object-fit: contain; opacity: .3; }
+  .footer-logo span { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #c0cdd8; letter-spacing: .05em; }
+  .footer p { font-size: 11px; color: #c0cbd5; line-height: 1.6; }
 
   /* ── TOAST ── */
   #toast {
@@ -336,10 +272,19 @@
   .fade-up { opacity:0; transform:translateY(18px); animation: fu .5s ease forwards; }
   @keyframes fu { to { opacity:1; transform:translateY(0); } }
   .d1{animation-delay:.08s} .d2{animation-delay:.18s} .d3{animation-delay:.28s} .d4{animation-delay:.38s}
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .hero { padding: 28px 20px 48px; }
+    .hero h1 { font-size: 20px; }
+    .hero-sub { font-size: 12px; }
+    .actions { grid-template-columns: 1fr; }
+    .contacts { grid-template-columns: 1fr; }
+    .body { padding: 22px 16px 32px; }
+  }
 </style>
 </head>
 <body>
-<div class="page">
 
   <div class="hero">
     <div class="hero-accent-bar"></div>
@@ -443,7 +388,7 @@
         </a>
 
       </div>
-      <p class="tap-hint" style="margin-top:9px;">Toca una tarjeta para llamar directamente 📲</p>
+      <p class="tap-hint" style="margin-top:10px;">Toca una tarjeta para llamar directamente 📲</p>
     </div>
 
   </div>
@@ -455,8 +400,6 @@
     </div>
     <p>Instituto Nacional de Formación Técnico Profesional<br>República Dominicana</p>
   </div>
-
-</div>
 
 <div id="toast"></div>
 <script>
